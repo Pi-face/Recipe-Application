@@ -4,10 +4,10 @@ Using the Spoonacular API. A person could use the application to search up recip
 
 ## Spoonacular
 
-#### Search Recipes by Ingredients
+#### Search Recipes
 
 ```http
-  GET https://api.spoonacular.com/recipes/findByIngredients
+  GET https://api.spoonacular.com/recipes/complexSearch
 ```
 
 | Parameter | Type     | Description                |
