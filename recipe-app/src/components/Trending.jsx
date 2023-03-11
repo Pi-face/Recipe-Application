@@ -11,12 +11,20 @@ const Trending = () => {
   }, []);
 
   const getTrending = async () => {
-    const api = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_KEY}&number=10`
-    );
-    const data = await api.json();
-    console.log(data.recipes);
-    setTrending(data.recipes);
+    const check = localStorage.getItem("trending");
+
+    if (check) {
+      setTrending(JSON.parse(check));
+    } else {
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_KEY}&number=10`
+      );
+      const data = await api.json();
+
+      localStorage.setItem("trending", JSON.stringify(data.recipes));
+      console.log(data.recipes);
+      setTrending(data.recipes);
+    }
   };
 
   return (
@@ -34,7 +42,7 @@ const Trending = () => {
       >
         {trending.map((recipe) => {
           return (
-            <SplideSlide>
+            <SplideSlide key={recipe.id}>
               <Card>
                 <h1>{recipe.title}</h1>
 
@@ -90,7 +98,7 @@ const Gradient = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
 `;
 
 export default Trending;
