@@ -17,7 +17,7 @@ const Veggie = () => {
       setVeggie(JSON.parse(check));
     } else {
       const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_KEY}number=10`
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_KEY}&number=9&tags=vegetarian`
       );
       const data = await api.json();
 
@@ -29,11 +29,11 @@ const Veggie = () => {
 
   return (
     <Wrapper>
-      <h3>Vegetarian Dishes</h3>
+      <h3>Vegetable dishes.</h3>
 
       <Splide
         options={{
-          perPage: 3,
+          perPage: 4,
           arrows: false,
           pagination: false,
           drag: "free",
@@ -44,7 +44,7 @@ const Veggie = () => {
           return (
             <SplideSlide key={recipe.id}>
               <Card>
-                <h1>{recipe.title}</h1>
+                <p>{recipe.title}</p>
 
                 <img src={recipe.image} alt={recipe.title} />
                 <Gradient />
@@ -63,7 +63,7 @@ const Wrapper = styled.section`
 
 const Card = styled.div`
   min-height: 25rem;
-  border-radius: 2rem;
+  border-radius: 3rem;
   overflow: hidden;
   position: relative;
 
@@ -75,7 +75,7 @@ const Card = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  h1 {
+  p {
     position: absolute;
     z-index: 10;
     left: 50%;
