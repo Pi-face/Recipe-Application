@@ -15,6 +15,7 @@ const Recipe = () => {
     );
     const detailData = await data.json();
     setDetails(detailData);
+    console.log(details);
   };
 
   useEffect(() => {
@@ -23,10 +24,10 @@ const Recipe = () => {
 
   return (
     <DetailWrapper>
-      <div>
+      <ImageWrapper>
         <h2>{details.title}</h2>
         <img src={details.image} alt='' />
-      </div>
+      </ImageWrapper>
       <Info>
         <Button
           className={activeTab === "instructions" ? "active" : ""}
@@ -44,6 +45,11 @@ const Recipe = () => {
           <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
           <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
         </div>
+        <ul>
+          {details.extendedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        </ul>
       </Info>
     </DetailWrapper>
   );
@@ -59,6 +65,10 @@ const DetailWrapper = styled.div`
   }
   h2 {
     margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
   }
 
   li {
@@ -82,6 +92,13 @@ const Button = styled.button`
 
 const Info = styled.div`
   margin-left: 10rem;
+  width: 50%;
+`;
+
+const ImageWrapper = styled.div`
+  img {
+    width: 100%;
+  }
 `;
 
 export default Recipe;
