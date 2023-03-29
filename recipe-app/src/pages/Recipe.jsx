@@ -41,15 +41,19 @@ const Recipe = () => {
         >
           Ingredients
         </Button>
-        <div>
-          <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
-          <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
-        </div>
-        <ul>
-          {details.extendedIngredients.map((ingredient) => (
-            <li key={ingredient.id}>{ingredient.original}</li>
-          ))}
-        </ul>
+        {activeTab === "instructions" && (
+          <div>
+            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+          </div>
+        )}
+        {activeTab === "ingredients" && (
+          <ul>
+            {details.extendedIngredients.map((ingredient) => (
+              <li key={ingredient.id}>{ingredient.original}</li>
+            ))}
+          </ul>
+        )}
       </Info>
     </DetailWrapper>
   );
@@ -60,8 +64,8 @@ const DetailWrapper = styled.div`
   margin-bottom: 5rem;
   display: flex;
   .active {
-    background: linear-gradient(35deg, #494949, #313131);
-    color: white;
+    background: #febd2f;
+    color: black;
   }
   h2 {
     margin-bottom: 2rem;
@@ -82,8 +86,8 @@ const DetailWrapper = styled.div`
 
 const Button = styled.button`
   padding: 1rem 2rem;
-  color: #313131;
-  background: #febd2f;
+  background: linear-gradient(35deg, #494949, #313131);
+  color: white;
   border: 2px solid black;
   border-radius: 30px;
   margin-right: 2rem;
