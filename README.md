@@ -25,6 +25,6 @@ Using the Spoonacular API. A person could use the application to search up recip
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://res.cloudinary.com/dbrdhogvw/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1680129972/image_aa47ww.png)
 
 
